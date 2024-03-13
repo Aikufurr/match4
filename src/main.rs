@@ -15,13 +15,13 @@ enum Player2 { Human, Ai }
 fn main() {
     let options = eframe::NativeOptions::default();
     eframe::run_native(
-        "Connect 4",
+        "Match 4",
         options,
-        Box::new(|_cc| Box::new(Connect4App::default())),
+        Box::new(|_cc| Box::new(Match4App::default())),
     );
 }
 
-struct Connect4App {
+struct Match4App {
     board: Board,
     ai: Ai,
     difficulty: Difficulty,
@@ -33,7 +33,7 @@ struct Connect4App {
     player_2_turn: bool
 }
 
-impl Default for Connect4App {
+impl Default for Match4App {
     fn default() -> Self {
         Self {
             board: Default::default(),
@@ -49,7 +49,7 @@ impl Default for Connect4App {
     }
 }
 
-impl Connect4App {
+impl Match4App {
     /// Handle column [`egui::Button`] click, takes the index [`usize`] of the button relating to the column to drop a piece in
     fn handle_click(&mut self, btn: usize) {       
         // Place a piece in the column (btn), the piece to drop is player_piece for player 1 and the inverse for player 2's turn
@@ -74,7 +74,7 @@ impl Connect4App {
 }
 
 #[allow(unused_must_use)]
-impl eframe::App for Connect4App {
+impl eframe::App for Match4App {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             // If the game hasn't started, show the menu for selecting the game's options
